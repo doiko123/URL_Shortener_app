@@ -9,6 +9,12 @@ URL短縮サービスです。
 - PostgreSQL
 - Heroku
 
+【その他】
+---
+* 独自ドメインはfreenomで取得
+* SSL化はCloudflareをプロキシとしてかませて行う
+* Heroku無料枠のため、UptimeRobotでスリープ防止
+
 【参考サイト】
 ---
 >・日経XTECH 短縮URLサービスの仕組み
