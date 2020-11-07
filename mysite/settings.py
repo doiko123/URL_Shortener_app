@@ -12,9 +12,7 @@ env.read_env('.env')
 
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = env.get_value('DEBUG', cast=bool, default=False)
-# 変数DEBUGはbool型であり、
-# 環境変数DEBUGが設定されていない場合にはFalseがデフォルト値として使われる
+DEBUG = False
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
@@ -25,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mysite',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +58,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
-    'default':env.db(),
+    'default': env.db(),
 }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -81,9 +80,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
