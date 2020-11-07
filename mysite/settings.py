@@ -7,14 +7,23 @@ import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env = environ.Env()
-env.read_env('.env')
-
-SECRET_KEY = env('SECRET_KEY')
-
 DEBUG = False
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+# ローカル環境（.envを読み込める）の場合はDEBUG=Trueになり
+# .env内の環境変数を参照する
+# 本番環境分はHerokuの設定画面から構成変数を別途設定
+try:
+    env = environ.Env()
+    env.read_env('.env')
+except ImportError:
+    pass
+
+if not DEBUG:
+    SECRET_KEY = env('SECRET_KEY')
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+    DATABASES = {
+        'default': env.db(),
+    }
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,9 +66,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-DATABASES = {
-    'default': env.db(),
-}
+
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
