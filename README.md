@@ -17,6 +17,5 @@ URL短縮サービスです。
 
 【環境構築について】
 ---
-- 当初WSL2-ubuntu20.04-virtualenv上で制作していたが
-- エラーなど問題が頻発したため
-- WSL2-Docker for Windowsで作り直すことに（11/9）
+- 当初WSL2-ubuntu20.04-virtualenv上で制作していたが<br>
+エラーなど問題が頻発したため、WSL2-Docker for Windowsで作り直すことに（11/9）
